@@ -32,7 +32,11 @@ const furnitureSchema = new Schema({
       ref: "Category",
     },
   ],
-});
+},
+{
+  timestamps: true,
+}
+);
 
 const Furniture = model("Furniture", furnitureSchema);
 module.exports = Furniture;

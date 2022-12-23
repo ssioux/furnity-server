@@ -11,6 +11,10 @@ const orderSchema = new Schema({
           type: mongoose.Schema.Types.ObjectId,
           ref: "User"
         } 
-})
+},
+{
+    timestamps: true,
+ }
+)
 const Order = model("Order", orderSchema);
 module.exports = Order;
