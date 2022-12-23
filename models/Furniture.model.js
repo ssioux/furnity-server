@@ -19,7 +19,7 @@ const furnitureSchema = new Schema({
   },
   price: {
     type: Number,
-    requered: [true, "price is required"],
+    required: [true, "price is required"],
     trim: true,
   },
   onSale: Boolean,
