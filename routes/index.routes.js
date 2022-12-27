@@ -8,4 +8,6 @@ router.get("/", (req, res, next) => {
 const userRoutes = require("./user.routes");
 router.use("/user", userRoutes);
 
+const furnitureRoutes = require("./furniture.routes")
+router.use("/furniture", furnitureRoutes)
 module.exports = router;

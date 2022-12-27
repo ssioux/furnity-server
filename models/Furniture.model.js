@@ -1,4 +1,4 @@
-const { Schema, model, default: mongoose } = require("mongoose");
+const { Schema, model, mongoose } = require("mongoose");
 
 const furnitureSchema = new Schema({
   name: {
