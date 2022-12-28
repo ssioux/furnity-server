@@ -1,7 +1,7 @@
 const router = require("express").Router()
 
-const {isAuthenticated} = require ("../middleware/jwt.middleware.js")
-const uploader = require ("../middleware/cloudinary.middleware")
+const {isAuthenticated} = require("../middleware/jwt.middleware.js")
+const uploader = require("../middleware/cloudinary.middleware")
 const Furniture = require("../models/Furniture.model")
 
 // POST "/furniture/create" => create new furniture
@@ -12,7 +12,7 @@ async(req,res,next) =>{
 const {name, description,image, price, category,onSale,salePrice,stock,units} = req.body;
 console.log("req.body", req.body)
 try {
-    const response = await Furniture.create({
+     await Furniture.create({
         name: name,
         description: description,
         image: image,
@@ -24,6 +24,7 @@ try {
         units: units,
 
     })
+
     res.status(200).json("Furniture Created");
     
 } catch (error) {
@@ -58,8 +59,8 @@ router.patch("/:furnitureId/update",
 isAuthenticated,
 uploader.single("image"),
 async(req,res,next) => {
-    const{furnitureId} = req.params;
-    const {name, description,image, price, category,onSale,salePrice,stock,units} = req.body;
+    const {furnitureId} = req.params;
+    const {name, description,image, price, category, onSale, salePrice, stock, units } = req.body;
       try {
         await Furniture.findByIdAndUpdate(furnitureId, {
             name: name,
