@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, mongoose } = require("mongoose");
 
 const furnitureSchema = new Schema({
   name: {
@@ -19,7 +19,7 @@ const furnitureSchema = new Schema({
   },
   price: {
     type: Number,
-    requered: [true, "price is required"],
+    required: [true, "price is required"],
     trim: true,
   },
   onSale: Boolean,
@@ -32,7 +32,11 @@ const furnitureSchema = new Schema({
       ref: "Category",
     },
   ],
-});
+},
+{
+  timestamps: true,
+}
+);
 
 const Furniture = model("Furniture", furnitureSchema);
 module.exports = Furniture;
