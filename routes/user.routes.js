@@ -23,7 +23,7 @@ router.get("/:userId/details", async (req, res, next) => {
   }
 });
 
-// GET "/user/:userId/edit" => Edit User by id in the DB
+// PATCH "/user/:userId/edit" => Edit User by id in the DB
 router.patch("/:userId/edit", async (req, res, next) => {
   const { userId } = req.params;
   const { name, firstName, lastName } = req.body;
@@ -33,14 +33,14 @@ router.patch("/:userId/edit", async (req, res, next) => {
     lastName,
   };
   try {
-    const userEdit = await User.findByIdAndUpdate(userId, userUpdated);
+    await User.findByIdAndUpdate(userId, userUpdated);
     res.status(200).json("User Updated successfully!")
   } catch (error) {
     next(error);
   }
 });
 
-// GET "/user/:userId/delete" => delete the account
+// DELETE "/user/:userId/delete" => delete the account
 router.delete("/:userId/delete", async (req, res, next)=> {
     const {userId}= req.params
     try {
