@@ -32,6 +32,10 @@ const userSchema = new Schema(
         ref: "Furniture",
       },
     ], 
+    address:  {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Address",
+    },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
