@@ -25,8 +25,13 @@ const userSchema = new Schema(
     lastName: {
       type: String,
       trim: true,
-    }
-    
+    },
+    cart: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Furniture",
+      },
+    ], 
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

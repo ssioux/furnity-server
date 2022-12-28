@@ -6,7 +6,7 @@ const User = require("../models/User.model");
 router.get("/list", async (req, res, next) => {
   try {
     const userList = await User.find();
-    res.status(200).json("lista usuarios");
+    res.status(200).json(userList);
   } catch (error) {
     next(error);
   }
