@@ -6,6 +6,7 @@ const { isAuthenticated } = require("../middleware/jwt.middleware");
 const { isAdmin } = require("../middleware/role.middleware");
 // Model from DB
 const Address = require("../models/Address.model");
+const User = require("../models/User.model");
 
 // POST "/address/create" => Creates a New Address in DB
 router.post("/create", async (req, res, next) => {
@@ -23,9 +24,13 @@ router.post("/create", async (req, res, next) => {
   };
 
   try {
-    await Address.create(newAddress);
-    res.status(200).json("Address Created Correctly");
-  } catch (error) {
+    const currentAddress = await Address.create(newAddress);
+    await User.findByIdAndUpdate(req.payload._id, {$addToset: {address: currentAddress}})
+    // console.log("🚀 ~ file: address.routes.js:29 ~ router.post ~ currentUser", currentUser)
+    
+    res.status(200).json("Address Created and address added to current user, correctly!");
+  
+} catch (error) {
     next(error);
   }
 });
