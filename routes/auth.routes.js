@@ -18,11 +18,17 @@ const saltRounds = 10;
 
 // POST /auth/signup  - Creates a new user in the database
 router.post("/signup", (req, res, next) => {
-  const { email, password, name } = req.body;
+  const { email, password, name, confirmPassword } = req.body;
 
   // Check if email or password or name are provided as empty strings
-  if (email === "" || password === "" || name === "") {
-    res.status(400).json({ message: "Provide email, password and name" });
+  if (email === "" || password === "" || name === "" || confirmPassword === "") {
+    res.status(400).json({ message: "Provide email, name, password and confirm password" });
+    return;
+  }
+
+  // Confirms if both passwords are equal
+  if( password !== confirmPassword ) {
+    res.status(400).json({message: "Both Passwords has to be equal"})
     return;
   }
 
