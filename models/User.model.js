@@ -36,6 +36,11 @@ const userSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Address",
     }],
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user"
+    },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
