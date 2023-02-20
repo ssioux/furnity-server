@@ -11,9 +11,9 @@ const categorySchema = new Schema({
         type: String,        
         trim: true,
       },
-      image: {
+      picture: {
         type: String,
-        required: [true, "image is required"],
+        required: [true, "Picture is required"],
       },
   
 },

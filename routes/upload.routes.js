@@ -3,13 +3,13 @@ const router = require("express").Router();
 
 const uploader = require("../middleware/cloudinary.middleware")
 
-router.post("/", uploader.single("image"), (req,res,next) => {
+router.post("/", uploader.single("picture"), (req,res,next) => {
     if(req.file === undefined) {
         res.status(400).json("Issues uploading the image");
         return
     }
     // Cloudinary URL
-    res.status(200).json({image:req.file.path})
+    res.status(200).json({picture:req.file.path})
 });
 
 module.exports = router;
