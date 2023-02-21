@@ -23,6 +23,8 @@ router.post(
 
     try {
       const response = Category.findOne({ name: name });
+      console.log("🚀 ~ file: category.routes.js:26 ~ response:", response)
+      
 
       if (response === undefined) {
         await Category.create({
@@ -32,7 +34,7 @@ router.post(
         });
         res.status(200).json("Category created");
       } else {
-        res.status(400).json("Name exists already.");
+        res.status(400).json({ message: "Name already exist." });
       }
     } catch (error) {
       next(error);
