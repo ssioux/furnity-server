@@ -22,11 +22,11 @@ router.post(
     }
 
     try {
-      const response = Category.findOne({ name: name });
-      console.log("🚀 ~ file: category.routes.js:26 ~ response:", response)
+      const response = await Category.findOne({ name: name });
+      console.log("🚀 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~:", response)
       
 
-      if (response === undefined) {
+      if (response === null) {
         await Category.create({
           name: name,
           description: description,
