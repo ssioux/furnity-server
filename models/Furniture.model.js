@@ -13,7 +13,7 @@ const furnitureSchema = new Schema({
     required: [true, "description is required"],
     trim: true,
   },
-  image: {
+  picture: {
     type: String,
     required: [true, "image is required"],
   },
