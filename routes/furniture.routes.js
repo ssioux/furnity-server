@@ -7,15 +7,15 @@ const Furniture = require("../models/Furniture.model")
 // POST "/furniture/create" => create new furniture
 router.post("/create", 
 isAuthenticated,
-uploader.single("image"),
+uploader.single("picture"),
 async(req,res,next) =>{
-const {name, description,image, price, category,onSale,salePrice,stock,units} = req.body;
+const {name, description,picture, price, category,onSale,salePrice,stock,units} = req.body;
 console.log("req.body", req.body)
 try {
      await Furniture.create({
         name: name,
         description: description,
-        image: image,
+        picture: picture,
         price: price,
         category:category,
         onSale: onSale,

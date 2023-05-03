@@ -15,7 +15,7 @@ const furnitureSchema = new Schema({
   },
   picture: {
     type: String,
-    required: [true, "image is required"],
+    required: [true, "Picture is required"],
   },
   price: {
     type: Number,
