@@ -30,6 +30,7 @@ const furnitureSchema = new Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
+      required: [true, "Category is required"],
     },
   ],
 },
