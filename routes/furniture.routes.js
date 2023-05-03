@@ -57,15 +57,15 @@ router.get("/:furnitureId/details", async(req,res,next) => {
 // PATCH "/furniture/:furnitureId/update" => update furniture
 router.patch("/:furnitureId/update",
 isAuthenticated,
-uploader.single("image"),
+uploader.single("picture"),
 async(req,res,next) => {
     const {furnitureId} = req.params;
-    const {name, description,image, price, category, onSale, salePrice, stock, units } = req.body;
+    const {name, description,picture, price, category, onSale, salePrice, stock, units } = req.body;
       try {
         await Furniture.findByIdAndUpdate(furnitureId, {
             name: name,
             description: description,
-            image: image,
+            picture: picture,
             price: price,
             category:category,
             onSale: onSale,
