@@ -23,13 +23,12 @@ router.post(
     } = req.body;
     console.log("req.body", req.body);
 
-    // Validator 1: inputs mast not be empty.
-    if (name === "" || description === "" || picture === "" || price === "") {
-      res.status(400).json("name, description, picture, or price cannot be empty.");
-      return;
-    }
-
     try {
+        // Validator 1: inputs mast not be empty.
+    if (name === "" || description === "" || picture === "" || price === "") {
+        res.status(400).json({message: "name, description, picture, or price cannot be empty."});
+        return;
+      }
       // Validator 2: Furniture Name must be unique.
       const response = await Furniture.findOne({ name: name });
 

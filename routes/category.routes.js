@@ -15,7 +15,7 @@ router.post(
     const { name, description, picture } = req.body;
 
     if (name === "" || description === "" || picture === "") {
-      res.status(400).json("name, description or image cannot be empty.");
+      res.status(400).json({message: "name, description or image cannot be empty."});
       return;
     }
 
