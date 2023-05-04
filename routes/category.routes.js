@@ -11,21 +11,17 @@ router.post(
   isAuthenticated,
   uploader.single("picture"),
   async (req, res, next) => {
-    console.log(
-      "first - entrando en crear categoria ----------------------------------"
-    );
-
+    
     const { name, description, picture } = req.body;
 
     if (name === "" || description === "" || picture === "") {
       res.status(400).json("name, description or image cannot be empty.");
+      return;
     }
 
     try {
       const response = await Category.findOne({ name: name });
-      console.log("🚀 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~:", response)
       
-
       if (response === null) {
         await Category.create({
           name: name,
