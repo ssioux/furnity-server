@@ -26,13 +26,11 @@ const furnitureSchema = new Schema({
   salePrice: Number,
   stock: Boolean,
   units: Number,
-  category: [
-    {
+  category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
       required: [true, "Category is required"],
     },
-  ],
 },
 {
   timestamps: true,

@@ -25,7 +25,7 @@ router.post(
 
     try {
         // Validator 1: inputs mast not be empty.
-    if (name === "" || description === "" || picture === "" || price === "") {
+    if (name === "" || description === "" || picture === "" || price === "" || category === "") {
         res.status(400).json({message: "name, description, picture, or price cannot be empty."});
         return;
       }
