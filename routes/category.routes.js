@@ -4,7 +4,6 @@ const uploader = require("../middleware/cloudinary.middleware");
 
 const Category = require("../models/Category.model");
 
-console.log("entrando a category");
 // POST ("/category/create") => create new Category
 router.post(
   "/create",

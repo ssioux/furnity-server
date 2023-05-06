@@ -22,7 +22,6 @@ router.post(
       stock,
       units,
     } = req.body;
-    console.log("req.body", req.body);
 
     try {
         // Validator 1: inputs mast not be empty.

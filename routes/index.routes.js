@@ -23,6 +23,5 @@ router.use("/address", addressRoutes);
 const uploadRoutes = require("./upload.routes");
 router.use("/upload", uploadRoutes);
 
-console.log("entrando a index")
 
 module.exports = router;
