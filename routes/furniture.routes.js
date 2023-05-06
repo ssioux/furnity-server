@@ -3,6 +3,7 @@ const router = require("express").Router();
 const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 const uploader = require("../middleware/cloudinary.middleware");
 const Furniture = require("../models/Furniture.model");
+const Category = require("../models/Category.model");
 
 // POST "/furniture/create" => create new furniture
 router.post(
@@ -65,6 +66,19 @@ router.get("/list", async (req, res, next) => {
   try {
     const response = await Furniture.find();
     res.status(200).json(response);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// GET "furniture/:categoryId/list" => each category furniture furniture list frm DB
+router.get("/:categoryId/list", async (req, res, next) => {
+  const { categoryId } = req.params
+  
+  try {
+    const eachCategoryFurnitures = await Furniture.find({category: {_id: "6435c697e9a83aadf0c61c98"}}).populate("category");
+      
+    res.status(200).json(eachCategoryFurnitures);
   } catch (error) {
     next(error);
   }
