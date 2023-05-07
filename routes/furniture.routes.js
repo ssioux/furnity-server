@@ -86,6 +86,7 @@ router.get("/:categoryId/list", async (req, res, next) => {
 // GET "/furniture/:furnitureId/details"  => furniture details
 router.get("/:furnitureId/details", async (req, res, next) => {
   const { furnitureId } = req.params;
+  
   try {
     const details = await Furniture.findById(furnitureId);
     res.status(200).json(details);
