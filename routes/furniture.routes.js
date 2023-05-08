@@ -75,7 +75,7 @@ router.get("/:categoryId/list", async (req, res, next) => {
   const { categoryId } = req.params
   
   try {
-    const eachCategoryFurnitures = await Furniture.find({category: {_id: "6435c697e9a83aadf0c61c98"}}).populate("category");
+    const eachCategoryFurnitures = await Furniture.find({category: {_id: categoryId}}).populate("category");
       
     res.status(200).json(eachCategoryFurnitures);
   } catch (error) {
