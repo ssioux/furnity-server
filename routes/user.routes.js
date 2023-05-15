@@ -26,30 +26,45 @@ router.get("/:userId/details", async (req, res, next) => {
 // PATCH "/user/:userId/edit" => Edit User by id in the DB
 router.patch("/:userId/update", async (req, res, next) => {
   const { userId } = req.params;
+
   const { name, firstName, lastName, cart } = req.body;
+
   const userUpdated = {
     name: name,
     firstName: firstName,
-    lastBane: lastName,
-    cart: cart,
+    lastName: lastName,
   };
   try {
     await User.findByIdAndUpdate(userId, userUpdated);
-    res.status(200).json("User Updated successfully!")
+    res.status(200).json("User Updated successfully!");
+  } catch (error) {
+    next(error);
+  }
+});
+
+// PATCH "/user/:userId/addtocart" => Edit User by id in the DB adding item to cart
+router.patch("/:userId/addtocart", async (req, res, next) => {
+  const { userId } = req.params;
+
+  const { furnyId } = req.body;
+
+  try {
+    await User.findByIdAndUpdate(userId, { $addToSet: { cart: furnyId } });
+    res.status(200).json("Item added Correctly!");
   } catch (error) {
     next(error);
   }
 });
 
 // DELETE "/user/:userId/delete" => delete the account
-router.delete("/:userId/delete", async (req, res, next)=> {
-    const {userId}= req.params
-    try {
-        await User.findByIdAndDelete(userId)
-        res.status(200).json("The account has been canceled.")
-    } catch (error) {
-        next(error)
-    }
-})
+router.delete("/:userId/delete", async (req, res, next) => {
+  const { userId } = req.params;
+  try {
+    await User.findByIdAndDelete(userId);
+    res.status(200).json("The account has been canceled.");
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;
