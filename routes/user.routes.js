@@ -24,13 +24,14 @@ router.get("/:userId/details", async (req, res, next) => {
 });
 
 // PATCH "/user/:userId/edit" => Edit User by id in the DB
-router.patch("/:userId/edit", async (req, res, next) => {
+router.patch("/:userId/update", async (req, res, next) => {
   const { userId } = req.params;
-  const { name, firstName, lastName } = req.body;
+  const { name, firstName, lastName, cart } = req.body;
   const userUpdated = {
-    name,
-    firstName,
-    lastName,
+    name: name,
+    firstName: firstName,
+    lastBane: lastName,
+    cart: cart,
   };
   try {
     await User.findByIdAndUpdate(userId, userUpdated);

@@ -19,6 +19,7 @@ router.post(
     }
 
     try {
+      
       const response = await Category.findOne({ name: name });
       
       if (response === null) {
