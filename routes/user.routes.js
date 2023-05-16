@@ -12,6 +12,17 @@ router.get("/list", async (req, res, next) => {
   }
 });
 
+// GET "/user/user-cart" => User Cart List from DB
+router.get("/user-cart", isAuthenticated, async (req, res, next) => {
+  try {
+
+    const currentUser = await User.findById(req.payload._id);
+    res.status(200).json(currentUser.cart);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // GET "/user/:userId/details" => User(id) details
 router.get("/:userId/details", async (req, res, next) => {
   const { userId } = req.params;
@@ -27,7 +38,7 @@ router.get("/:userId/details", async (req, res, next) => {
 router.patch("/:userId/update", async (req, res, next) => {
   const { userId } = req.params;
 
-  const { name, firstName, lastName, cart } = req.body;
+  const { name, firstName, lastName } = req.body;
 
   const userUpdated = {
     name: name,
