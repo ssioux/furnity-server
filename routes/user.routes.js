@@ -67,6 +67,20 @@ router.patch("/:userId/addtocart", async (req, res, next) => {
   }
 });
 
+// DELETE "/user/:userId/removetocart" => Edit User by id in the DB removing item from the user cart
+router.patch("/:userId/removetocart", async (req, res, next) => {
+  const { userId } = req.params;
+
+  const { furnyId } = req.body;
+
+  try {
+    await User.findByIdAndUpdate(userId, { $pull: { cart: furnyId } });
+    res.status(200).json("Item added Correctly!");
+  } catch (error) {
+    next(error);
+  }
+});
+
 // DELETE "/user/:userId/delete" => delete the account
 router.delete("/:userId/delete", async (req, res, next) => {
   const { userId } = req.params;
