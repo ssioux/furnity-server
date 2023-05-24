@@ -12,15 +12,11 @@ router.get("/list", async (req, res, next) => {
   }
 });
 
-// GET "/user/:userId/user-cart" => User Cart List from DB
-router.get("/:userId/user-cart", isAuthenticated, async (req, res, next) => {
-
-
+// GET "/user/user-cart" => User Cart List from DB
+router.get("/user-cart", isAuthenticated, async (req, res, next) => {
   try {
- 
-      const currentUser = await User.findById(req.payload._id);
-      res.status(200).json(currentUser.cart);
-   
+    const currentUser = await User.findById(req.payload._id);
+    res.status(200).json(currentUser.cart);
   } catch (error) {
     next(error);
   }
@@ -56,14 +52,14 @@ router.patch("/:userId/update", async (req, res, next) => {
   }
 });
 
-// PATCH "/user/:userId/addtocart" => Edit User by id in the DB adding item to cart
-router.patch("/:userId/addtocart", async (req, res, next) => {
-  const { userId } = req.params;
-
+// PATCH "/user/addtocart" => Edit User by id in the DB adding item to cart
+router.patch("/addtocart", isAuthenticated, async (req, res, next) => {
   const { furnyId } = req.body;
 
   try {
-    await User.findByIdAndUpdate(userId, { $addToSet: { cart: furnyId } });
+    await User.findByIdAndUpdate(req.payload._id, {
+      $addToSet: { cart: furnyId },
+    });
     res.status(200).json("Item added Correctly!");
   } catch (error) {
     next(error);
