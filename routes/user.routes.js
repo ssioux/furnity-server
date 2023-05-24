@@ -12,12 +12,15 @@ router.get("/list", async (req, res, next) => {
   }
 });
 
-// GET "/user/user-cart" => User Cart List from DB
-router.get("/user-cart", isAuthenticated, async (req, res, next) => {
-  try {
+// GET "/user/:userId/user-cart" => User Cart List from DB
+router.get("/:userId/user-cart", isAuthenticated, async (req, res, next) => {
 
-    const currentUser = await User.findById(req.payload._id);
-    res.status(200).json(currentUser.cart);
+
+  try {
+ 
+      const currentUser = await User.findById(req.payload._id);
+      res.status(200).json(currentUser.cart);
+   
   } catch (error) {
     next(error);
   }
