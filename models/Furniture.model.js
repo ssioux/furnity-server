@@ -25,7 +25,10 @@ const furnitureSchema = new Schema({
   onSale: Boolean,
   salePrice: Number,
   stock: Boolean,
-  units: Number,
+  units: {
+    type: Number,
+    default: 1,
+  },
   category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
