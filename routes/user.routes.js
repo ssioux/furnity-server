@@ -91,4 +91,19 @@ router.delete("/:userId/delete", async (req, res, next) => {
   }
 });
 
+// PATCH "/user/add-unit" => One more Item added to cart item
+router.patch("/add-unit", isAuthenticated, async (req, res, next) => {
+  const { furnyId } = req.body;
+
+  try {
+     await User.findByIdAndUpdate(req.payload._id, {
+      $addToSet: { cart: furnyId }
+    });
+ 
+    res.status(200).json("One more Item added");
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
