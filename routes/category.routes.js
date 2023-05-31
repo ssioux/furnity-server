@@ -4,7 +4,7 @@ const uploader = require("../middleware/cloudinary.middleware");
 
 const Category = require("../models/Category.model");
 
-// POST ("/category/create") => create new Category
+// POST "/category/create") => create new Category
 router.post(
   "/create",
   isAuthenticated,

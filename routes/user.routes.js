@@ -57,9 +57,10 @@ router.patch("/addtocart", isAuthenticated, async (req, res, next) => {
   const { furnyId } = req.body;
 
   try {
-    await User.findByIdAndUpdate(req.payload._id, {
-      $addToSet: { cart: furnyId },
+     await User.findByIdAndUpdate(req.payload._id, {
+      $addToSet: { cart: furnyId }
     });
+ 
     res.status(200).json("Item added Correctly!");
   } catch (error) {
     next(error);
@@ -67,14 +68,13 @@ router.patch("/addtocart", isAuthenticated, async (req, res, next) => {
 });
 
 // DELETE "/user/:userId/removetocart" => Edit User by id in the DB removing item from the user cart
-router.patch("/:userId/removetocart", async (req, res, next) => {
-  const { userId } = req.params;
+router.patch("/removefromcart",isAuthenticated, async (req, res, next) => {
 
   const { furnyId } = req.body;
 
   try {
-    await User.findByIdAndUpdate(userId, { $pull: { cart: furnyId } });
-    res.status(200).json("Item added Correctly!");
+    await User.findByIdAndUpdate(req.payload._id, { $pull: { cart: furnyId } });
+    res.status(200).json("Item erased Correctly!");
   } catch (error) {
     next(error);
   }
